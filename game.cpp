@@ -39,19 +39,19 @@ int main() {
 
   string welcomeMessage;
   string answer;
-      std::string pattern("ye|[abc]");         // Regex expression
-    std::regex rx(pattern);             // Getting the regex object 
-
+  std::string pattern("ye|[abc]"); // Regex expression
+  std::regex rx(pattern); // Getting the regex object 
 
   welcomeMessage = "Welcome, would you like to play a game? (Yes/No): ";
   cout << welcomeMessage;
   cin >> answer;
-  transform(answer.begin(), answer.end(), answer.begin(), ::tolower);
+  transform(answer.begin(), answer.end(), answer.begin(), ::tolower); // Lowercases all user input
 
-  std::string s(answer); 
-  std::ptrdiff_t number_of_matches = std::distance( 
-  std::sregex_iterator(s.begin(), s.end(), rx),
-  std::sregex_iterator());
+  // string s(answer); 
+  ptrdiff_t number_of_matches = distance(
+    sregex_iterator(answer.begin(), answer.end(), rx),
+    sregex_iterator()
+  );
 
     if (number_of_matches >= 1) {
        
