@@ -7,18 +7,12 @@
 #include "helpmenu.cpp"
 
 using namespace std;
-	// Declare an object of class geeks 
+
+	// Declare an object of classes 
 	Dialog dialog; 
   HelpMenu helpmenu;
-// void help() {
 
 
-
-// }
-
-void inventory(string item) {
-
-}
 
 void startGame(string username){
     dialog.welcomeMessage(username);
@@ -29,7 +23,12 @@ void startGame(string username){
     if (command == "help") {
       // open help menu
       helpmenu.helpMenu();
-    } else {
+    } else if(command == "exit") {
+      // Ovbiosuly quits the program
+      exit(0);
+    }
+     
+    else {
       cout << "Sorry that was an invalid command. At anytime you may enter help to access the help menu.";
       helpmenu.helpMenu();
     }
@@ -39,7 +38,9 @@ int main() {
 
   string welcomeMessage;
   string answer;
-  std::string pattern("ye|[abc]"); // Regex expression
+  string pattern("ye|[abc]"); // Regex expression (This expression checks for any words that begin with ye
+  // This allows us to take yes,yeah,yea. 
+  
   std::regex rx(pattern); // Getting the regex object 
 
   welcomeMessage = "Welcome, would you like to play a game? (Yes/No): ";
@@ -47,7 +48,6 @@ int main() {
   cin >> answer;
   transform(answer.begin(), answer.end(), answer.begin(), ::tolower); // Lowercases all user input
 
-  // string s(answer); 
   ptrdiff_t number_of_matches = distance(
     sregex_iterator(answer.begin(), answer.end(), rx),
     sregex_iterator()
